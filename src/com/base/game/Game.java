@@ -28,7 +28,7 @@ public class Game {
         lights = new ArrayList<Light>();
     }
     
-    public void input() {
+    public boolean input() {
         if(Input.getKeyDown(Input.KEY_UP)) {
             lights.add(new Light(Input.getMousePosition(), 10,
                     new Vector3f((float) (Math.random()*1), (float) (Math.random()*1), (float) (Math.random()*3)), true));
@@ -44,16 +44,21 @@ public class Game {
         }
 
         if(Input.getKeyDown(Input.KEY_ESCAPE)){
-            System.exit(0);
+            return true;
+        }
+
+        if(Input.getKeyDown(Input.KEY_F)){
+
+
         }
 
         for(GameObject gameObject: gameObjects)
             gameObject.input();
+
+        return false;
     }
 
     public void update(double frameTime) {
-
-
         for(GameObject gameObject: gameObjects)
             gameObject.update(frameTime);
     }

@@ -1,14 +1,19 @@
 package com.base.engine;
 
 import com.base.game.Game;
+import java.awt.*;
 
 public class MainComponent {
 
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
-    public static final String TITLE = "A-Star Visu - Simon Gerhalter";
+    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private static int screenWidth = (int) screenSize.getWidth();
+    private static int screenHeight = (int) screenSize.getHeight();
+    public static final String TITLE = "Test123";
     public static final double FRAME_CAP = 60.0;
     private boolean isRunning;
+    private boolean isFullscreen = false;
     private Game game;
 
     public MainComponent() {
@@ -65,8 +70,12 @@ public class MainComponent {
 
                 Delay.setDelta(frameTime);
 
-                game.input();
+                isRunning = !game.input();
                 Input.update();
+
+                if(!isFullscreen){
+
+                }
 
                 game.update(frameTime);
 
@@ -105,8 +114,6 @@ public class MainComponent {
         Window.createWindow(WIDTH, HEIGHT, TITLE);
 
         MainComponent game = new MainComponent();
-        System.out.println("Du dreckige Huuuuure..");
-
         game.start();
     }
 }
