@@ -22,7 +22,6 @@ public class MainComponent {
         if (isRunning) {
             return;
         }
-
         run();
     }
 

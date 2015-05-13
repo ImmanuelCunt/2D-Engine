@@ -43,7 +43,7 @@ public class Game {
             lights.removeAll(lights);
         }
 
-        if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
+        if(Input.getKeyDown(Input.KEY_ESCAPE)){
             System.exit(0);
         }
 
