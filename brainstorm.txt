@@ -1,0 +1,36 @@
+---------------
+----Design----
+---------------
+Setting:
+    - School-RPG
+
+
+---------------------
+----Game Elements----
+---------------------
+
+View:
+    - Top down
+
+Combat:
+    - Melee
+    - Spells
+
+RPG elements:
+    - Looting & leveling
+    - Skill system
+    - Inventory
+
+    Stats:
+        - Strength
+        - Ability power
+        - Armor
+        - Magic resistance
+        - Movement speed
+
+
+------------------------
+----Engine Abilities----
+------------------------
+- Light effects
+- Path finder
