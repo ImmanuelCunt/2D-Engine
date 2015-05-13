@@ -11,6 +11,7 @@ import com.base.gameobjects.Polygon;
 import com.base.gameobjects.Rectangle;
 import com.base.util.pathfinder.Pathfinder;
 import com.base.util.pathfinder.Point;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.nio.file.Path;
@@ -19,10 +20,8 @@ import java.util.Random;
 
 
 public class Game {
-
     private ArrayList<GameObject> gameObjects;
     private ArrayList<Light> lights;
-
 
     public Game() {
         gameObjects = new ArrayList<GameObject>();
@@ -42,6 +41,10 @@ public class Game {
         if(Input.getKeyDown(Input.KEY_SPACE)) {
             gameObjects.removeAll(gameObjects);
             lights.removeAll(lights);
+        }
+
+        if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
+            System.exit(0);
         }
 
         for(GameObject gameObject: gameObjects)

@@ -49,7 +49,7 @@ public class Light {
 
         try {
             String line;
-            BufferedReader reader = new BufferedReader(new FileReader("res\\fragmentShader.fs"));
+            BufferedReader reader = new BufferedReader(new FileReader("res/fragmentShader.fs"));
             while ((line = reader.readLine()) != null) {
                 fragmentShaderSource.append(line).append("\n");
             }
