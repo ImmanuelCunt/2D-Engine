@@ -28,7 +28,7 @@ public class Rectangle extends GameObject{
 
     private Vector2f destination;
 
-    public Rectangle(Vector2f pos, Vector2f size, int rot, Vector3f color,Texture texture, Vector2f textureCoords, Vector2f textureSize) {
+    public Rectangle(Vector2f pos, Vector2f size, int rot, Vector3f color, Texture texture, Vector2f textureCoords, Vector2f textureSize) {
         super(pos, color);
         this.setSize(size);
         this.setRot(rot);

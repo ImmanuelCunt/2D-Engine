@@ -4,7 +4,7 @@ import com.base.game.Game;
 
 public class MainComponent {
 
-    public static final int WIDTH = 600;
+    public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
     public static final String TITLE = "A-Star Visu - Simon Gerhalter";
     public static final double FRAME_CAP = 60.0;

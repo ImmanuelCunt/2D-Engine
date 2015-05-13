@@ -7,6 +7,7 @@
 package com.base.game;
 
 import com.base.engine.*;
+import com.base.gameobjects.Polygon;
 import com.base.gameobjects.Rectangle;
 import com.base.util.pathfinder.Pathfinder;
 import com.base.util.pathfinder.Point;
@@ -19,48 +20,29 @@ import java.util.Random;
 
 public class Game {
 
-    public static final int X = 200;
-    public static final int Y = 200;
-
     private ArrayList<GameObject> gameObjects;
+    private ArrayList<Light> lights;
 
-    private int[][] field;
 
     public Game() {
         gameObjects = new ArrayList<GameObject>();
-
-        field = new int[X][Y];
-
-        for(int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[0].length; j++) {
-                double ran = Math.random();
-                if(ran < .1)
-                    field[i][j] = 1;
-                else
-                    field[i][j] = 0;
-
-
-            }
-        }
-
-        updateGameObjects();
+        lights = new ArrayList<Light>();
     }
     
     public void input() {
-        if(Input.getKeyDown(Input.KEY_SPACE)) {
-            Pathfinder pathfinder = new Pathfinder(field);
-
-            long time = System.nanoTime();
-            ArrayList<Point> path = pathfinder.findPathRect(0, 0, X-1, Y-1);
-            System.out.println(System.nanoTime() - time);
-
-            if(path != null) {
-                for(int i = 0; i < path.size(); i++) {
-                    System.out.println(path.get(i).getX() + "\t" + path.get(i).getY());
-                }
-            }
+        if(Input.getKeyDown(Input.KEY_UP)) {
+            lights.add(new Light(Input.getMousePosition(), 10,
+                    new Vector3f((float) (Math.random()*1), (float) (Math.random()*1), (float) (Math.random()*3)), true));
         }
 
+        if(Input.getKeyDown(Input.KEY_DOWN)) {
+            gameObjects.add(new Polygon(Input.getMousePosition(), (Vector2f[]) null, 0, new Vector3f(0, 0, 0)));
+        }
+
+        if(Input.getKeyDown(Input.KEY_SPACE)) {
+            gameObjects.removeAll(gameObjects);
+            lights.removeAll(lights);
+        }
 
         for(GameObject gameObject: gameObjects)
             gameObject.input();
@@ -74,26 +56,10 @@ public class Game {
     }
 
     public void render() {
-
-
         for(GameObject gameObject : gameObjects) {
             gameObject.render();
         }
-    }
-
-    //-----Help Methods-----
-
-    private void updateGameObjects() {
-        gameObjects.removeAll(gameObjects);
-
-        int sizeY = MainComponent.HEIGHT/Y;
-        int sizeX = MainComponent.WIDTH/X;
-
-        for(int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[0].length; j++) {
-                if(field[i][j] == 1)
-                    gameObjects.add(new Rectangle(new Vector2f(sizeX*i ,sizeY*j), new Vector2f(sizeX, sizeY), 0, new Vector3f(1 ,0 , 1), null, new Vector2f(1, 1), new Vector2f(1, 1)));
-            }
-        }
+        for(Light light: lights)
+            light.render(gameObjects);
     }
 }
