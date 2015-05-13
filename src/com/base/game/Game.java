@@ -31,11 +31,13 @@ public class Game {
     public void input() {
         if(Input.getKeyDown(Input.KEY_UP)) {
             lights.add(new Light(Input.getMousePosition(), 10,
-                    new Vector3f((float) (Math.random()*1), (float) (Math.random()*1), (float) (Math.random()*3)), true));
+                    new Vector3f((float) (Math.random()*5), (float) (Math.random()*5), (float) (Math.random()*5)), true));
         }
 
         if(Input.getKeyDown(Input.KEY_DOWN)) {
-            gameObjects.add(new Polygon(Input.getMousePosition(), (Vector2f[]) null, 0, new Vector3f(0, 0, 0)));
+            gameObjects.add(new Rectangle(Input.getMousePosition(), new Vector2f(10, 10), 0,
+                    new Vector3f((float) Math.random(), (float) Math.random(), (float) Math.random()),
+                    Resourceloader.loadTexture("wood"), new Vector2f(1, 1), new Vector2f(1, 1)));
         }
 
         if(Input.getKeyDown(Input.KEY_SPACE)) {
@@ -53,6 +55,8 @@ public class Game {
 
     public void update(double frameTime) {
 
+        if(gameObjects.size() > 0)
+            gameObjects.get(gameObjects.size()-1).setPos(Input.getMousePosition());
 
         for(GameObject gameObject: gameObjects)
             gameObject.update(frameTime);
