@@ -22,6 +22,7 @@ import java.util.Random;
 public class Game {
     private ArrayList<GameObject> gameObjects;
     private ArrayList<Light> lights;
+    public boolean isRunning = false;
 
     public Game() {
         gameObjects = new ArrayList<GameObject>();
@@ -46,7 +47,7 @@ public class Game {
         }
 
         if(Input.getKeyDown(Input.KEY_ESCAPE)){
-            System.exit(0);
+            isRunning = false;
         }
 
         for(GameObject gameObject: gameObjects)

@@ -8,33 +8,31 @@ public class MainComponent {
     public static final int HEIGHT = 600;
     public static final String TITLE = "A-Star Visu - Simon Gerhalter";
     public static final double FRAME_CAP = 60.0;
-    private boolean isRunning;
     private Game game;
 
     public MainComponent() {
         System.out.println(RenderUtil.getOpenGLVersion());
         RenderUtil.initGraphics();
-        isRunning = false;
         game = new Game();
     }
 
     public void start() {
-        if (isRunning) {
+        if (game.isRunning) {
             return;
         }
         run();
     }
 
     public void stop() {
-        if (!isRunning) {
+        if (!game.isRunning) {
             return;
         }
 
-        isRunning = false;
+        game.isRunning = false;
     }
 
     private void run() {
-        isRunning = true;
+        game.isRunning = true;
 
         int frames = 0;
         long frameCounter = 0;
@@ -44,7 +42,7 @@ public class MainComponent {
         long lastTime = Delay.getTime();
         double unprocessedTime = 0;
 
-        while (isRunning) {
+        while (game.isRunning) {
             boolean render = false;
 
             long startTime = Delay.getTime();
