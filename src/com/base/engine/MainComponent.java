@@ -106,6 +106,7 @@ public class MainComponent {
         Window.createWindow(WIDTH, HEIGHT, TITLE);
 
         MainComponent game = new MainComponent();
+        System.out.println("Du dreckige Huuuuure..");
 
         game.start();
     }
