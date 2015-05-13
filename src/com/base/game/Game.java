@@ -37,7 +37,7 @@ public class Game {
         if(Input.getKeyDown(Input.KEY_DOWN)) {
             gameObjects.add(new Rectangle(Input.getMousePosition(), new Vector2f(10, 10), 0,
                     new Vector3f((float) Math.random(), (float) Math.random(), (float) Math.random()),
-                    Resourceloader.loadTexture("wood"), new Vector2f(1, 1), new Vector2f(1, 1)));
+                    Resourceloader.loadTexture("wood"), new Vector2f(0, 0), new Vector2f(1, 1)));
         }
 
         if(Input.getKeyDown(Input.KEY_SPACE)) {
