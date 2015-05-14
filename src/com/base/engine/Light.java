@@ -80,6 +80,7 @@ public class Light {
     public void render(ArrayList<GameObject> gameObjects) {
 
         if(shadowsEnabled) {
+            System.out.println("hi");
             glColorMask(false, false, false, false);
             glStencilFunc(GL_ALWAYS, 1, 1);
             glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
