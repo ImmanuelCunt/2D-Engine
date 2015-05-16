@@ -23,6 +23,7 @@ public class Game {
     private ArrayList<GameObject> gameObjects;
     private ArrayList<Light> lights;
     public boolean isRunning = false;
+    private boolean fullscreen = false;
 
     public Game() {
         gameObjects = new ArrayList<GameObject>();
@@ -48,6 +49,11 @@ public class Game {
 
         if(Input.getKeyDown(Input.KEY_ESCAPE)){
             isRunning = false;
+        }
+
+        if(Input.getKeyDown(Input.KEY_F)){
+            fullscreen = !fullscreen;
+            Window.setFullscreen(fullscreen);
         }
 
         for(GameObject gameObject: gameObjects)

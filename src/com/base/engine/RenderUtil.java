@@ -37,6 +37,8 @@ public class RenderUtil {
         glEnable(GL_STENCIL_TEST);
         glClearStencil(0);
 
+
+        glViewport(0, 0, Display.getWidth(), Display.getHeight());
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         glOrtho(0, Display.getWidth(), 0, Display.getHeight(), -1, 1);

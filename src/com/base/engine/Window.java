@@ -12,9 +12,17 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
+import static org.lwjgl.opengl.GL11.glMatrixMode;
+
+
 public class Window {
+    private static int m_width, m_height;
 
     public static void createWindow(int width, int height, String title) {
+        m_width = width;
+        m_height = height;
         Display.setTitle(title);
         try {
             Display.setDisplayMode(new DisplayMode(width, height));
@@ -34,7 +42,36 @@ public class Window {
         Display.destroy();
         Keyboard.destroy();
         Mouse.destroy();
-		Light.destroy();
+        Light.destroy();
+    }
+
+    public static void setFullscreen(boolean fullscreen) {
+        try {
+            if (fullscreen) {
+                Display.setDisplayModeAndFullscreen(Display.getDesktopDisplayMode());
+            } else {
+                Display.setDisplayMode(new DisplayMode(m_width, m_height));
+            }
+            glViewport(0, 0, Display.getWidth(), Display.getHeight());
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
+            glOrtho(0, Display.getWidth(), 0, Display.getHeight(), -1, 1);
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+        } catch (LWJGLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void initTextures() {
+        /*
+        try {
+            wallTex = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/wall.png"));
+            floorTex = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/floor.png"));
+            crosshairTex = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/crosshair.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
     }
 
     public static boolean isCloseRequested() {
